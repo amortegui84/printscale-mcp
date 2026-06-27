@@ -1,6 +1,7 @@
 {
   "name": "printscale-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "mcpName": "io.github.amortegui84/printscale-mcp",
   "description": "MCP server to upscale images to print-ready files (TIFF/PNG/JPG) — for Claude, Cursor and other AI agents, powered by PrintScale.",
   "type": "module",
   "bin": {
