@@ -1,0 +1,42 @@
+{
+  "name": "printscale-mcp",
+  "version": "1.0.1",
+  "description": "MCP server to upscale images to print-ready files (TIFF/PNG/JPG) — for Claude, Cursor and other AI agents, powered by PrintScale.",
+  "type": "module",
+  "bin": {
+    "printscale-mcp": "index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "README.md",
+    "server.json"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "printscale",
+    "upscale",
+    "image-upscaling",
+    "print",
+    "ai",
+    "claude",
+    "cursor"
+  ],
+  "homepage": "https://printscale.app/docs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amortegui84/printscale-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/amortegui84/printscale-mcp/issues"
+  },
+  "author": "PrintScale",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.8"
+  }
+}
