@@ -53,8 +53,8 @@ const server = new McpServer({ name: "printscale", version: "1.0.0" });
 server.tool(
   "printscale_upscale",
   "Upscale an image to a print-ready file. Returns TIFF, PNG and JPG download URLs. " +
-    "Provide either a public https image_url OR a local file_path. Charges credits " +
-    "from the PrintScale account. The source should already be sharp — this enlarges " +
+    "Provide either a public https image_url OR a local file_path. Charges the price " +
+    "($2.49–$6.99 by output size) to the PrintScale account balance. The source should already be sharp — this enlarges " +
     "detail, it does not repair blurry images.",
   {
     image_url: z.string().url().optional().describe("Public https URL of the image"),
@@ -93,7 +93,7 @@ server.tool(
       }
       const o = j.outputs || {};
       return text(
-        `Upscaled ✓  ${j.width}×${j.height}px · ${job.credits_charged} credit(s)\n` +
+        `Upscaled ✓  ${j.width}×${j.height}px · $${j.price_usd ?? job.price_usd}\n` +
           `TIFF: ${o.tiff}\nPNG: ${o.png}\nJPG: ${o.jpg}`
       );
     } catch (err) {
@@ -116,18 +116,28 @@ server.tool(
   }
 );
 
+async function balance() {
+  try {
+    const b = await api("/api/v1/balance");
+    return text(`Balance: $${b.balance_usd} USD`);
+  } catch (err) {
+    return text(`Error: ${err.message}`);
+  }
+}
+
+server.tool(
+  "printscale_balance",
+  "Get the PrintScale account balance (US dollars) for the configured API key.",
+  {},
+  balance
+);
+
+// Kept so existing agent configs that call the old tool name keep working.
 server.tool(
   "printscale_credits",
-  "Get the PrintScale credit balance for the configured API key.",
+  "Deprecated alias of printscale_balance: returns the account balance in US dollars.",
   {},
-  async () => {
-    try {
-      const c = await api("/api/v1/credits");
-      return text(`Credits remaining: ${c.balance}`);
-    } catch (err) {
-      return text(`Error: ${err.message}`);
-    }
-  }
+  balance
 );
 
 await server.connect(new StdioServerTransport());

@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.amortegui84/printscale-mcp",
   "description": "Upscale images to print-ready files (TIFF/PNG/JPG) via PrintScale.",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "repository": {
     "url": "https://github.com/amortegui84/printscale-mcp",
     "source": "github"
@@ -11,7 +11,7 @@
     {
       "registryType": "npm",
       "identifier": "printscale-mcp",
-      "version": "1.0.2",
+      "version": "1.1.0",
       "transport": { "type": "stdio" },
       "environmentVariables": [
         {
